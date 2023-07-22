@@ -27,15 +27,12 @@ Route::get('/action', function () {
 });
 
 
-// Route::get('/scraper', [App\Http\Controllers\ScraperController::class, 'scraper'])->name('scraper');
-// Route::post('/parse_absen', [App\Http\Controllers\ScraperController::class, 'parseAbsen'])->name('parse_absen');
-// Route::get('/absen', [App\Http\Controllers\ScraperController::class, 'parseAbsen']);
-
-
+//========= ROUTES INPUT MANGA =========
 Route::get('/insert', [App\Http\Controllers\ScraperController::class, 'insert_scraper']);
 
+//========== SCRAP MANGA =========
 Route::post('/parse_url', [App\Http\Controllers\ScraperController::class, 'parseUrl'])->name('parse_url');
 // Route::post('/mangawest', [App\Http\Controllers\ScraperController::class, 'mangawest'])->name('mangawest');
 Route::post('/komikcast', [App\Http\Controllers\ScraperController::class, 'komikcast'])->name('komikcast');
 Route::post('/tes', [App\Http\Controllers\ScraperController::class, 'tes'])->name('tes');
-// Route::post('/parse_absen', [App\Http\Controllers\ScraperController::class, 'parseAbsen'])->name('parse_absen');
+
