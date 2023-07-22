@@ -14,8 +14,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('landing/animelist');
 });
+Route::get('/admin', function () {
+    return view('admin/Dashboard');
+});
+Route::get('/Hero', function () {
+    return view('admin/detailmanga');
+});
+Route::get('/action', function () {
+    return view('admin/action');
+});
+
 
 // Route::get('/scraper', [App\Http\Controllers\ScraperController::class, 'scraper'])->name('scraper');
 // Route::post('/parse_absen', [App\Http\Controllers\ScraperController::class, 'parseAbsen'])->name('parse_absen');
@@ -28,3 +38,4 @@ Route::post('/parse_url', [App\Http\Controllers\ScraperController::class, 'parse
 // Route::post('/mangawest', [App\Http\Controllers\ScraperController::class, 'mangawest'])->name('mangawest');
 Route::post('/komikcast', [App\Http\Controllers\ScraperController::class, 'komikcast'])->name('komikcast');
 Route::post('/tes', [App\Http\Controllers\ScraperController::class, 'tes'])->name('tes');
+// Route::post('/parse_absen', [App\Http\Controllers\ScraperController::class, 'parseAbsen'])->name('parse_absen');
