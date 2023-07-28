@@ -29,10 +29,11 @@ Route::get('/action', function () {
 
 //========= ROUTES INPUT MANGA =========
 Route::get('/insert', [App\Http\Controllers\ScraperController::class, 'insert_scraper']);
+Route::post('/cek', [App\Http\Controllers\ScraperController::class, 'cek'])->name('cek');
 
 //========== SCRAP MANGA =========
 Route::post('/parse_url', [App\Http\Controllers\ScraperController::class, 'parseUrl'])->name('parse_url');
 // Route::post('/mangawest', [App\Http\Controllers\ScraperController::class, 'mangawest'])->name('mangawest');
 Route::post('/komikcast', [App\Http\Controllers\ScraperController::class, 'komikcast'])->name('komikcast');
-Route::post('/tes', [App\Http\Controllers\ScraperController::class, 'tes'])->name('tes');
+Route::post('/mikoroku', [App\Http\Controllers\ScraperController::class, 'mikoroku'])->name('mikoroku');
 

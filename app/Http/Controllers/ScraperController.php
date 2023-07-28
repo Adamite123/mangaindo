@@ -81,25 +81,29 @@ class ScraperController extends Controller
     //     }
     // }
 
-    //tes
-    public function tes(Request $request)
+    //Mikoroku
+    public function mikoroku(Request $request)
     {
-        $client = new Client();
+        // Get the URL from the input POST request
         $url = $request->input('url');
-        
-        $page = $client->request('GET', $url);
-        
-        // Create a new DomCrawler instance with the HTML content
-        $crawler = new Crawler($page->html());
-        dd($crawler);
-        $data = $crawler->filter('.main-reading-area img')->each(function (Crawler $img) {
-            // Extract the 'src' attribute from each <img> tag and return it
-            return $img->attr('src');
-        });
-    
-        // dd($data);
-        
-        // Pass the data to your view
+
+        // Replace 'python_script.py' with the actual name of your Python script
+        $pythonScript = base_path('public/mikoroku.py');
+
+        // Prepare the command to execute the Python script and pass the URL
+        $command = "python3 {$pythonScript} " . escapeshellarg($url);
+
+        // Execute the command and capture the output
+        $process = shell_exec($command);
+
+        // Explode the value
+        $data = explode(',', $process);
+
+        // Get the status (the first element)
+        $status = $data[0];
+
+        // Get the image URLs (from the second element onwards)
+        $data = array_slice($data, 1);
         return view('insert_scrape', compact('data'));
     }
 
@@ -124,5 +128,35 @@ class ScraperController extends Controller
         // Pass the data to your view
         return view('insert_scrape', compact('data'));
     }
+
+    //Cek Manga
+    public function cek(Request $request)
+    {
+        // Get the URL from the input POST request
+        $url = $request->input('url');
+
+        // Replace 'python_script.py' with the actual name of your Python script
+        $pythonScript = base_path('public/cek.py');
+
+        // Prepare the command to execute the Python script and pass the URL
+        $command = "python3 {$pythonScript} " . escapeshellarg($url);
+
+        // Execute the command and capture the output
+        $process = shell_exec($command);
+
+        // Explode the value
+        $data = explode(',', $process);
+        // dd($data);
+
+        $status = $data[0];
+        $url = $data[1];
+
+        // Return the value to view
+        // dd($status.$url);
+        return view('insert_scrape', compact('status','url'));
+
+    }
+
+    
     
 }
