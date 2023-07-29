@@ -19,9 +19,9 @@ Route::get('/', function () {
 Route::get('/admin', function () {
     return view('admin/Dashboard');
 });
-Route::get('/Hero', function () {
-    return view('admin/detailmanga');
-});
+// Route::get('/insert', function () {
+//     return view('admin/detailmanga');
+// });
 Route::get('/action', function () {
     return view('admin/action');
 });

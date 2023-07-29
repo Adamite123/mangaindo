@@ -1,17 +1,5 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <title>Insert Scraper</title>
-
-
-</head>
-<body>
-    
+@extends('admin.home')
+@section('home')
     {{-- ===== Cek ==== --}}
     {{-- <form method="POST" action="{{ route('cek') }}" >
         @csrf
@@ -33,17 +21,20 @@
 
     {{-- <img src="https://itachi.my.id/images/k/kill-the-hero/chapter-01/1.jpg" alt="">
      --}}
-    <label for="">================== Generate KOMIK ====================</label>
-    <div style="padding: 15px">
+     <div style="margin: auto; width: 50%; text-align: center;">
+      <label for="">================== Generate KOMIK ====================</label>
+      <div style="padding: 15px;">
         <button id="button1">Komiku</button>
         <button id="button2">Mikoroku(18+)</button>
         <button id="button3">Komikcast</button>
+      </div>
     </div>
+    
 
     <img src="https://itachi.my.id/image/k/kichiku-eiyuu/chapter-00/3.jpg" alt="" cross-origin="use-credentials">
       
     {{-- ===== KOMIKU ==== --}}
-      <form method="POST" action="{{ route('parse_url') }}" id="komikuForm" style="display: none;">
+      <form method="POST" action="{{ route('parse_url') }}" id="komikuForm" style="display: none;text-align: center;">
         @csrf
         <div>
           <label for="url">URL:</label>
@@ -53,39 +44,50 @@
       </form>
 
     {{-- ===== Mikoroku ==== --}}
-      <form method="POST" action="{{ route('mikoroku') }}" id="MangawestForm" style="display: none;">
+      <form method="POST" action="{{ route('mikoroku') }}" id="MangawestForm" style="display: none;text-align: center;">
         @csrf
         <div>
           <label for="url">URL:</label>
-          <input type="text" name="url" id="url" placeholder="input mangawest URL" required>
+          <input type="text" name="url" id="url" placeholder="input mikoroku URL" required>
         </div>
         <button type="submit">Submit</button>
       </form>
 
     {{-- ===== Komikcast ==== --}}
-      <form method="POST" action="{{ route('komikcast') }}" id="ButtonForm" style="display: none;">
+      <form method="POST" action="{{ route('komikcast') }}" id="ButtonForm" style="display: none;text-align: center;">
         @csrf
         <div>
           <label for="url">URL:</label>
-          <input type="text" name="url" id="url" placeholder="input button URL" required>
+          <input type="text" name="url" id="url" placeholder="input komikcast URL" required>
         </div>
         <button type="submit">Submit</button>
       </form>
       
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6 offset-md-3 mt-5 wrapper">
-            @isset($data)
-              @foreach($data as $key)
-                {{-- {{$key}} --}}
-                <img src="{{$key}}" alt="">
-              @endforeach
-            @endisset
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3 mt-5 wrapper" style="margin: auto; width: 50%; text-align: center;">
+        @isset($data)
+          <label for="">================== Preview KOMIK ====================</label>
+          <div style="overflow-y: scroll; height: 700px; margin-bottom: 15px;">
+            <table style="width: 100%;">
+              <tbody>
+                @foreach($data as $key)
+                <tr>
+                  <td><img src="{{$key}}" alt=""></td>
+                </tr>
+                @endforeach
+              </tbody>
+            </table>
           </div>
-        </div>
+          <input type="text" name="title" placeholder="Masukan Judul & Episode Komik">
+          <button type="button" class="btn btn-primary" onclick="insertImage()">Insert Image</button>
+        @endisset
       </div>
+    </div>
+  </div>
+
       
-      
+       
       <script>
         const button1 = document.getElementById('button1');
         const button2 = document.getElementById('button2');
@@ -114,5 +116,4 @@
       </script>
       
 
-</body>
-</html>
+@endsection

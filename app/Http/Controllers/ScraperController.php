@@ -33,7 +33,7 @@ class ScraperController extends Controller
 
 
     public function insert_scraper(){
-        return view('insert_scrape');
+        return view('admin/insert_scrape');
     }
 
 
@@ -53,7 +53,7 @@ class ScraperController extends Controller
         // dd($this->results);
         
         $data = $this->results;
-        return view('insert_scrape', compact('data'));
+        return view('admin/insert_scrape', compact('data'));
     }
 
     //mangawest
@@ -104,7 +104,7 @@ class ScraperController extends Controller
 
         // Get the image URLs (from the second element onwards)
         $data = array_slice($data, 1);
-        return view('insert_scrape', compact('data'));
+        return view('admin/insert_scrape', compact('data'));
     }
 
     //komikcast
@@ -153,7 +153,7 @@ class ScraperController extends Controller
 
         // Return the value to view
         // dd($status.$url);
-        return view('insert_scrape', compact('status','url'));
+        return view('admin/insert_scrape', compact('status','url'));
 
     }
 
